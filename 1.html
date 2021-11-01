@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>表单的验证</title>
+</head>
+<style>
+    .success{color:green;}
+    .wrong{color: red;}
+</style>
+<style>
+    #design{
+        height: 1000px;
+        width: 800px;
+        border: 1 px;
+        background-color: aqua;
+        margin: 0 auto;
+        align-content: center;
+        text-align: center;
+    }
+</style>
+<div id="design">
+<h1 class=".design" >注册</h1>
+<body class="design" >
+用户昵称：<input id="name" type="text" class="uname" placeholder="长度6~16位,由英文字母大小写和数字组成"><span></span></br>
+设置密码：<input id="pass1" type="password" class="passw1" placeholder="长度8~18位,由数字,英文大小写字母,下划线组成"><span1></span1></br>
+确认密码：<input id="pass2" type="password" class="passw2" placeholder="确认密码"><span2></span2></br>   
+手机号码：<input type="text" class="phonenember" placeholder="请输入11位手机号"><span3></span3></br>   
+电子邮箱：<input type="text" class="email" placeholder="请输入你的邮箱以验证"><span4></span4>     
+    <script>
+        var reg = /^[a-zA-Z0-9_-]{6,16}$/;
+        var uname = document.querySelector('.uname');
+        var span = document.querySelector('span');
+        uname.onblur = function(){
+            if(reg.test(this.value)){
+                span.className = 'success';
+                span.innerHTML = 'OK!';
+            }
+            else{
+                span.className = 'wrong';
+                span.innerHTML = '用户名不合法';
+            }
+        };
+        var reg1 = /^[a-zA-Z0-9_-]{8,18}$/;
+        var passw1 = document.querySelector('.passw1');
+        var span1 = document.querySelector('span1');
+        passw1.onblur = function(){
+            if(reg1.test(this.value)){
+                span1.className = 'success';
+                span1.innerHTML = 'OK!';
+            }
+            else{
+                span1.className = 'wrong';
+                span1.innerHTML = '不合法的密码！';
+            }
+        };
+        var p1=document.getElementById("pass1").value;
+        var p2=document.getElementById("pass2").value;
+        var passw2 = document.querySelector('.passw2');
+        var span2 = document.querySelector('span2');
+        passw2.onblur = function(){
+            if(String(p1) != String(p2)){
+                span2.className = 'wrong';
+                span2.innerHTML = '两次的密码不一致！';
+            }
+            else{
+                span2.className = 'success';
+                span2.innerHTML = 'OK!';
+            }
+        };
+    </script>
+    <script>
+        var reg2 = /^[0-9]{11}$/;
+        var phonenember = document.querySelector('.phonenember');
+        var span3 = document.querySelector('span3');
+        phonenember.onblur = function(){
+            if(reg2.test(this.value)){
+                span3.className = 'success';
+                span3.innerHTML = 'OK!';
+            }
+            else{
+                span3.className = 'wrong';
+                span3.innerHTML = '错误的手机号！';
+            }
+        };
+        var reg3 = /^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[0-9a-zA-Z]+)+$/;
+        var email = document.querySelector('.email');
+        var span4 = document.querySelector('span4');    
+        email.onblur = function(){
+            if(reg3.test(this.value)){
+                span4.className = 'success';
+                span4.innerHTML = 'OK';
+            }
+            else{
+                span4.className = 'wrong';
+                span4.innerHTML = '错误的邮箱！';
+            }
+        };
+    </script>
+</body>
+</div>
+</html>
